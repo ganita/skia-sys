@@ -1,0 +1,3 @@
+[submodule "skia"]
+	path = skia
+	url = ../Akriti/Test/skia/
