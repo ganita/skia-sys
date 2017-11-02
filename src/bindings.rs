@@ -519,7 +519,7 @@ pub type max_align_t = f64;
 pub type sk_color_t = u32;
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ColorType {
+pub enum sk_colortype_t {
     UNKNOWN_SK_COLORTYPE = 0,
     RGBA_8888_SK_COLORTYPE = 1,
     BGRA_8888_SK_COLORTYPE = 2,
@@ -527,20 +527,20 @@ pub enum ColorType {
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum AlphaType {
+pub enum sk_alphatype_t {
     OPAQUE_SK_ALPHATYPE = 0,
     PREMUL_SK_ALPHATYPE = 1,
     UNPREMUL_SK_ALPHATYPE = 2,
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ClipType {
+pub enum sk_cliptype_t {
     INTERSECT_SK_CLIPTYPE = 0,
     DIFFERENCE_SK_CLIPTYPE = 1,
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum PixelGeometry {
+pub enum sk_pixelgeometry_t {
     UNKNOWN_SK_PIXELGEOMETRY = 0,
     RGB_H_SK_PIXELGEOMETRY = 1,
     BGR_H_SK_PIXELGEOMETRY = 2,
@@ -549,90 +549,90 @@ pub enum PixelGeometry {
 }
 extern "C" {
     /// Return the default sk_colortype_t; this is operating-system dependent.
-    pub fn sk_colortype_get_default_8888() -> ColorType;
+    pub fn sk_colortype_get_default_8888() -> sk_colortype_t;
 }
 #[repr(C)]
 #[derive(Debug, Copy)]
-pub struct ImageInfo {
+pub struct sk_imageinfo_t {
     pub width: i32,
     pub height: i32,
-    pub colorType: ColorType,
-    pub alphaType: AlphaType,
+    pub colorType: sk_colortype_t,
+    pub alphaType: sk_alphatype_t,
 }
 #[test]
 fn bindgen_test_layout_sk_imageinfo_t() {
-    assert_eq!(::std::mem::size_of::<ImageInfo>(), 16usize, concat ! (
+    assert_eq!(::std::mem::size_of::<sk_imageinfo_t>() , 16usize , concat ! (
                "Size of: " , stringify ! ( sk_imageinfo_t ) ));
-    assert_eq! (::std::mem::align_of::<ImageInfo>(), 4usize, concat ! (
+    assert_eq! (::std::mem::align_of::<sk_imageinfo_t>() , 4usize , concat ! (
                 "Alignment of " , stringify ! ( sk_imageinfo_t ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const ImageInfo) ) . width as * const _
+                & ( * ( 0 as * const sk_imageinfo_t ) ) . width as * const _
                 as usize } , 0usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_imageinfo_t ) , "::"
                 , stringify ! ( width ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const ImageInfo) ) . height as * const _
+                & ( * ( 0 as * const sk_imageinfo_t ) ) . height as * const _
                 as usize } , 4usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_imageinfo_t ) , "::"
                 , stringify ! ( height ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const ImageInfo) ) . colorType as * const
+                & ( * ( 0 as * const sk_imageinfo_t ) ) . colorType as * const
                 _ as usize } , 8usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_imageinfo_t ) , "::"
                 , stringify ! ( colorType ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const ImageInfo) ) . alphaType as * const
+                & ( * ( 0 as * const sk_imageinfo_t ) ) . alphaType as * const
                 _ as usize } , 12usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_imageinfo_t ) , "::"
                 , stringify ! ( alphaType ) ));
 }
-impl Clone for ImageInfo {
+impl Clone for sk_imageinfo_t {
     fn clone(&self) -> Self { *self }
 }
 #[repr(C)]
 #[derive(Debug, Copy)]
-pub struct SurfaceProps {
-    pub pixelGeometry: PixelGeometry,
+pub struct sk_surfaceprops_t {
+    pub pixelGeometry: sk_pixelgeometry_t,
 }
 #[test]
 fn bindgen_test_layout_sk_surfaceprops_t() {
-    assert_eq!(::std::mem::size_of::<SurfaceProps>(), 4usize, concat !
+    assert_eq!(::std::mem::size_of::<sk_surfaceprops_t>() , 4usize , concat !
                ( "Size of: " , stringify ! ( sk_surfaceprops_t ) ));
-    assert_eq! (::std::mem::align_of::<SurfaceProps>(), 4usize, concat
+    assert_eq! (::std::mem::align_of::<sk_surfaceprops_t>() , 4usize , concat
                 ! ( "Alignment of " , stringify ! ( sk_surfaceprops_t ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const SurfaceProps) ) . pixelGeometry as
+                & ( * ( 0 as * const sk_surfaceprops_t ) ) . pixelGeometry as
                 * const _ as usize } , 0usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_surfaceprops_t ) ,
                 "::" , stringify ! ( pixelGeometry ) ));
 }
-impl Clone for SurfaceProps {
+impl Clone for sk_surfaceprops_t {
     fn clone(&self) -> Self { *self }
 }
 #[repr(C)]
 #[derive(Debug, Copy)]
-pub struct Point {
+pub struct sk_point_t {
     pub x: f32,
     pub y: f32,
 }
 #[test]
 fn bindgen_test_layout_sk_point_t() {
-    assert_eq!(::std::mem::size_of::<Point>(), 8usize, concat ! (
+    assert_eq!(::std::mem::size_of::<sk_point_t>() , 8usize , concat ! (
                "Size of: " , stringify ! ( sk_point_t ) ));
-    assert_eq! (::std::mem::align_of::<Point>(), 4usize, concat ! (
+    assert_eq! (::std::mem::align_of::<sk_point_t>() , 4usize , concat ! (
                 "Alignment of " , stringify ! ( sk_point_t ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const Point) ) . x as * const _ as usize
+                & ( * ( 0 as * const sk_point_t ) ) . x as * const _ as usize
                 } , 0usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_point_t ) , "::" ,
                 stringify ! ( x ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const Point) ) . y as * const _ as usize
+                & ( * ( 0 as * const sk_point_t ) ) . y as * const _ as usize
                 } , 4usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_point_t ) , "::" ,
                 stringify ! ( y ) ));
 }
-impl Clone for Point {
+impl Clone for sk_point_t {
     fn clone(&self) -> Self { *self }
 }
 #[repr(C)]
@@ -675,7 +675,7 @@ impl Clone for sk_irect_t {
 }
 #[repr(C)]
 #[derive(Debug, Copy)]
-pub struct Rect {
+pub struct sk_rect_t {
     pub left: f32,
     pub top: f32,
     pub right: f32,
@@ -683,52 +683,52 @@ pub struct Rect {
 }
 #[test]
 fn bindgen_test_layout_sk_rect_t() {
-    assert_eq!(::std::mem::size_of::<Rect>(), 16usize, concat ! (
+    assert_eq!(::std::mem::size_of::<sk_rect_t>() , 16usize , concat ! (
                "Size of: " , stringify ! ( sk_rect_t ) ));
-    assert_eq! (::std::mem::align_of::<Rect>(), 4usize, concat ! (
+    assert_eq! (::std::mem::align_of::<sk_rect_t>() , 4usize , concat ! (
                 "Alignment of " , stringify ! ( sk_rect_t ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const Rect) ) . left as * const _ as
+                & ( * ( 0 as * const sk_rect_t ) ) . left as * const _ as
                 usize } , 0usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_rect_t ) , "::" ,
                 stringify ! ( left ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const Rect) ) . top as * const _ as usize
+                & ( * ( 0 as * const sk_rect_t ) ) . top as * const _ as usize
                 } , 4usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_rect_t ) , "::" ,
                 stringify ! ( top ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const Rect) ) . right as * const _ as
+                & ( * ( 0 as * const sk_rect_t ) ) . right as * const _ as
                 usize } , 8usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_rect_t ) , "::" ,
                 stringify ! ( right ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const Rect) ) . bottom as * const _ as
+                & ( * ( 0 as * const sk_rect_t ) ) . bottom as * const _ as
                 usize } , 12usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_rect_t ) , "::" ,
                 stringify ! ( bottom ) ));
 }
-impl Clone for Rect {
+impl Clone for sk_rect_t {
     fn clone(&self) -> Self { *self }
 }
 #[repr(C)]
 #[derive(Debug, Copy)]
-pub struct Matrix {
+pub struct sk_matrix_t {
     pub mat: [f32; 9usize],
 }
 #[test]
 fn bindgen_test_layout_sk_matrix_t() {
-    assert_eq!(::std::mem::size_of::<Matrix>(), 36usize, concat ! (
+    assert_eq!(::std::mem::size_of::<sk_matrix_t>() , 36usize , concat ! (
                "Size of: " , stringify ! ( sk_matrix_t ) ));
-    assert_eq! (::std::mem::align_of::<Matrix>(), 4usize, concat ! (
+    assert_eq! (::std::mem::align_of::<sk_matrix_t>() , 4usize , concat ! (
                 "Alignment of " , stringify ! ( sk_matrix_t ) ));
     assert_eq! (unsafe {
-                & ( * ( 0 as * const Matrix) ) . mat as * const _ as
+                & ( * ( 0 as * const sk_matrix_t ) ) . mat as * const _ as
                 usize } , 0usize , concat ! (
                 "Alignment of field: " , stringify ! ( sk_matrix_t ) , "::" ,
                 stringify ! ( mat ) ));
 }
-impl Clone for Matrix {
+impl Clone for sk_matrix_t {
     fn clone(&self) -> Self { *self }
 }
 #[repr(C)]
@@ -783,7 +783,7 @@ pub struct sk_surface_t {
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum XfermodeMode {
+pub enum sk_xfermode_mode_t {
     CLEAR_SK_XFERMODE_MODE = 0,
     SRC_SK_XFERMODE_MODE = 1,
     DST_SK_XFERMODE_MODE = 2,
@@ -836,7 +836,7 @@ extern "C" {
 /// to the offscreen when sk_canvas_restore() is
 /// called.
     pub fn sk_canvas_save_layer(arg1: *mut sk_canvas_t,
-                                arg2: *const Rect,
+                                arg2: *const sk_rect_t,
                                 arg3: *const sk_paint_t);
 }
 extern "C" {
@@ -875,14 +875,14 @@ extern "C" {
 extern "C" {
     /// Preconcat the current coordinate transformation matrix with the
 /// specified matrix.
-    pub fn sk_canvas_concat(arg1: *mut sk_canvas_t, arg2: *const Matrix);
+    pub fn sk_canvas_concat(arg1: *mut sk_canvas_t, arg2: *const sk_matrix_t);
 }
 extern "C" {
     /// Modify the current clip with the specified rectangle.  The new
 /// current clip will be the intersection of the old clip and the
 /// rectange.
     pub fn sk_canvas_clip_rect(arg1: *mut sk_canvas_t,
-                               arg2: *const Rect);
+                               arg2: *const sk_rect_t);
 }
 extern "C" {
     /// Modify the current clip with the specified path.  The new
@@ -901,7 +901,7 @@ extern "C" {
     /// Draw the specified rectangle using the specified paint. The
 /// rectangle will be filled or stroked based on the style in the
 /// paint.
-    pub fn sk_canvas_draw_rect(arg1: *mut sk_canvas_t, arg2: *const Rect,
+    pub fn sk_canvas_draw_rect(arg1: *mut sk_canvas_t, arg2: *const sk_rect_t,
                                arg3: *const sk_paint_t);
 }
 extern "C" {
@@ -913,7 +913,7 @@ extern "C" {
 extern "C" {
     /// Draw the specified oval using the specified paint. The oval will be
 /// filled or framed based on the style in the paint
-    pub fn sk_canvas_draw_oval(arg1: *mut sk_canvas_t, arg2: *const Rect,
+    pub fn sk_canvas_draw_oval(arg1: *mut sk_canvas_t, arg2: *const sk_rect_t,
                                arg3: *const sk_paint_t);
 }
 extern "C" {
@@ -939,8 +939,8 @@ extern "C" {
 /// @param sk_paint_t* (may be NULL) The paint used to draw the image.
     pub fn sk_canvas_draw_image_rect(arg1: *mut sk_canvas_t,
                                      arg2: *const sk_image_t,
-                                     src: *const Rect,
-                                     dst: *const Rect,
+                                     src: *const sk_rect_t,
+                                     dst: *const sk_rect_t,
                                      arg3: *const sk_paint_t);
 }
 extern "C" {
@@ -959,7 +959,7 @@ extern "C" {
 /// draw_picture, restore.
     pub fn sk_canvas_draw_picture(arg1: *mut sk_canvas_t,
                                   arg2: *const sk_picture_t,
-                                  arg3: *const Matrix,
+                                  arg3: *const sk_matrix_t,
                                   arg4: *const sk_paint_t);
 }
 extern "C" {
@@ -1016,7 +1016,7 @@ extern "C" {
 extern "C" {
     /// Return a new image that has made a copy of the provided pixels, or NULL on failure.
 /// Balance with a call to sk_image_unref().
-    pub fn sk_image_new_raster_copy(arg1: *const ImageInfo,
+    pub fn sk_image_new_raster_copy(arg1: *const sk_imageinfo_t,
                                     pixels: *const ::std::os::raw::c_void,
                                     rowBytes: usize) -> *mut sk_image_t;
 }
@@ -1066,7 +1066,7 @@ extern "C" {
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum BlurStyle {
+pub enum sk_blurstyle_t {
     NORMAL_SK_BLUR_STYLE = 0,
     SOLID_SK_BLUR_STYLE = 1,
     OUTER_SK_BLUR_STYLE = 2,
@@ -1088,40 +1088,40 @@ extern "C" {
     /// Create a blur maskfilter.
 /// @param sk_blurstyle_t The SkBlurStyle to use
 /// @param sigma Standard deviation of the Gaussian blur to apply. Must be > 0.
-    pub fn sk_maskfilter_new_blur(arg1: BlurStyle, sigma: f32)
-                                  -> *mut sk_maskfilter_t;
+    pub fn sk_maskfilter_new_blur(arg1: sk_blurstyle_t, sigma: f32)
+     -> *mut sk_maskfilter_t;
 }
 extern "C" {
     /// Set the matrix to identity
-    pub fn sk_matrix_set_identity(arg1: *mut Matrix);
+    pub fn sk_matrix_set_identity(arg1: *mut sk_matrix_t);
 }
 extern "C" {
     /// Set the matrix to translate by (tx, ty).
-    pub fn sk_matrix_set_translate(arg1: *mut Matrix, tx: f32, ty: f32);
+    pub fn sk_matrix_set_translate(arg1: *mut sk_matrix_t, tx: f32, ty: f32);
 }
 extern "C" {
     /// Preconcats the matrix with the specified translation.
 /// M' = M * T(dx, dy)
-    pub fn sk_matrix_pre_translate(arg1: *mut Matrix, tx: f32, ty: f32);
+    pub fn sk_matrix_pre_translate(arg1: *mut sk_matrix_t, tx: f32, ty: f32);
 }
 extern "C" {
     /// Postconcats the matrix with the specified translation.
 /// M' = T(dx, dy) * M
-    pub fn sk_matrix_post_translate(arg1: *mut Matrix, tx: f32, ty: f32);
+    pub fn sk_matrix_post_translate(arg1: *mut sk_matrix_t, tx: f32, ty: f32);
 }
 extern "C" {
     /// Set the matrix to scale by sx and sy.
-    pub fn sk_matrix_set_scale(arg1: *mut Matrix, sx: f32, sy: f32);
+    pub fn sk_matrix_set_scale(arg1: *mut sk_matrix_t, sx: f32, sy: f32);
 }
 extern "C" {
     /// Preconcats the matrix with the specified scale.
 /// M' = M * S(sx, sy)
-    pub fn sk_matrix_pre_scale(arg1: *mut Matrix, sx: f32, sy: f32);
+    pub fn sk_matrix_pre_scale(arg1: *mut sk_matrix_t, sx: f32, sy: f32);
 }
 extern "C" {
     /// Postconcats the matrix with the specified scale.
 /// M' = S(sx, sy) * M
-    pub fn sk_matrix_post_scale(arg1: *mut Matrix, sx: f32, sy: f32);
+    pub fn sk_matrix_post_scale(arg1: *mut sk_matrix_t, sx: f32, sy: f32);
 }
 extern "C" {
     /// Create a new paint with default settings:
@@ -1191,7 +1191,7 @@ extern "C" {
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum StrokeCap {
+pub enum sk_stroke_cap_t {
     BUTT_SK_STROKE_CAP = 0,
     ROUND_SK_STROKE_CAP = 1,
     SQUARE_SK_STROKE_CAP = 2,
@@ -1200,17 +1200,17 @@ extern "C" {
     /// Return the paint's stroke cap type, controlling how the start and
 /// end of stroked lines and paths are treated.
     pub fn sk_paint_get_stroke_cap(arg1: *const sk_paint_t)
-     -> StrokeCap;
+     -> sk_stroke_cap_t;
 }
 extern "C" {
     /// Set the paint's stroke cap type, controlling how the start and
 /// end of stroked lines and paths are treated.
     pub fn sk_paint_set_stroke_cap(arg1: *mut sk_paint_t,
-                                   arg2: StrokeCap);
+                                   arg2: sk_stroke_cap_t);
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum StrokeJoin {
+pub enum sk_stroke_join_t {
     MITER_SK_STROKE_JOIN = 0,
     ROUND_SK_STROKE_JOIN = 1,
     BEVEL_SK_STROKE_JOIN = 2,
@@ -1219,13 +1219,13 @@ extern "C" {
     /// Return the paint's stroke join type, specifies the treatment that
 /// is applied to corners in paths and rectangles
     pub fn sk_paint_get_stroke_join(arg1: *const sk_paint_t)
-     -> StrokeJoin;
+     -> sk_stroke_join_t;
 }
 extern "C" {
     /// Set the paint's stroke join type, specifies the treatment that
 /// is applied to corners in paths and rectangles
     pub fn sk_paint_set_stroke_join(arg1: *mut sk_paint_t,
-                                    arg2: StrokeJoin);
+                                    arg2: sk_stroke_join_t);
 }
 extern "C" {
     /// Set the paint's shader to the specified parameter. This will automatically call unref() on
@@ -1241,11 +1241,11 @@ extern "C" {
 extern "C" {
     /// Set the paint's xfermode to the specified parameter.
     pub fn sk_paint_set_xfermode_mode(arg1: *mut sk_paint_t,
-                                      arg2: XfermodeMode);
+                                      arg2: sk_xfermode_mode_t);
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum PathDirection {
+pub enum sk_path_direction_t {
     CW_SK_PATH_DIRECTION = 0,
     CCW_SK_PATH_DIRECTION = 1,
 }
@@ -1298,19 +1298,19 @@ extern "C" {
 }
 extern "C" {
     /// Add a closed rectangle contour to the path.
-    pub fn sk_path_add_rect(arg1: *mut sk_path_t, arg2: *const Rect,
-                            arg3: PathDirection);
+    pub fn sk_path_add_rect(arg1: *mut sk_path_t, arg2: *const sk_rect_t,
+                            arg3: sk_path_direction_t);
 }
 extern "C" {
     /// Add a closed oval contour to the path
-    pub fn sk_path_add_oval(arg1: *mut sk_path_t, arg2: *const Rect,
-                            arg3: PathDirection);
+    pub fn sk_path_add_oval(arg1: *mut sk_path_t, arg2: *const sk_rect_t,
+                            arg3: sk_path_direction_t);
 }
 extern "C" {
     /// If the path is empty, return false and set the rect parameter to [0, 0, 0, 0].
 /// else return true and set the rect parameter to the bounds of the control-points
 /// of the path.
-    pub fn sk_path_get_bounds(arg1: *const sk_path_t, arg2: *mut Rect)
+    pub fn sk_path_get_bounds(arg1: *const sk_path_t, arg2: *mut sk_rect_t)
      -> bool;
 }
 extern "C" {
@@ -1331,7 +1331,7 @@ extern "C" {
 /// rect is undefined, and may be drawn or it may not.
     pub fn sk_picture_recorder_begin_recording(arg1:
                                                    *mut sk_picture_recorder_t,
-                                               arg2: *const Rect)
+                                               arg2: *const sk_rect_t)
      -> *mut sk_canvas_t;
 }
 extern "C" {
@@ -1360,7 +1360,7 @@ extern "C" {
 }
 extern "C" {
     /// Return the cull rect specified when this picture was recorded.
-    pub fn sk_picture_get_bounds(arg1: *mut sk_picture_t) -> Rect;
+    pub fn sk_picture_get_bounds(arg1: *mut sk_picture_t) -> sk_rect_t;
 }
 extern "C" {
     pub fn sk_shader_ref(arg1: *mut sk_shader_t);
@@ -1370,7 +1370,7 @@ extern "C" {
 }
 #[repr(u32)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum ShaderTilemode {
+pub enum sk_shader_tilemode_t {
     CLAMP_SK_SHADER_TILEMODE = 0,
     REPEAT_SK_SHADER_TILEMODE = 1,
     MIRROR_SK_SHADER_TILEMODE = 2,
@@ -1392,13 +1392,13 @@ extern "C" {
 /// @param colorCount Must be >=2. The number of colors (and pos if not
 /// NULL) entries.
 /// @param mode The tiling mode
-    pub fn sk_shader_new_linear_gradient(points: *const Point,
+    pub fn sk_shader_new_linear_gradient(points: *const sk_point_t,
                                          colors: *const sk_color_t,
                                          colorPos: *const f32,
                                          colorCount: ::std::os::raw::c_int,
-                                         tileMode: ShaderTilemode,
-                                         localMatrix: *const Matrix)
-                                         -> *mut sk_shader_t;
+                                         tileMode: sk_shader_tilemode_t,
+                                         localMatrix: *const sk_matrix_t)
+     -> *mut sk_shader_t;
 }
 extern "C" {
     /// Returns a shader that generates a radial gradient given the center
@@ -1420,14 +1420,14 @@ extern "C" {
 /// NULL) entries
 /// @param tileMode The tiling mode
 /// @param localMatrix May be NULL
-    pub fn sk_shader_new_radial_gradient(center: *const Point,
+    pub fn sk_shader_new_radial_gradient(center: *const sk_point_t,
                                          radius: f32,
                                          colors: *const sk_color_t,
                                          colorPos: *const f32,
                                          colorCount: ::std::os::raw::c_int,
-                                         tileMode: ShaderTilemode,
-                                         localMatrix: *const Matrix)
-                                         -> *mut sk_shader_t;
+                                         tileMode: sk_shader_tilemode_t,
+                                         localMatrix: *const sk_matrix_t)
+     -> *mut sk_shader_t;
 }
 extern "C" {
     /// Returns a shader that generates a sweep gradient given a center.
@@ -1445,12 +1445,12 @@ extern "C" {
 /// @param colorCount Must be >= 2. The number of colors (and pos if
 /// not NULL) entries
 /// @param localMatrix May be NULL
-    pub fn sk_shader_new_sweep_gradient(center: *const Point,
+    pub fn sk_shader_new_sweep_gradient(center: *const sk_point_t,
                                         colors: *const sk_color_t,
                                         colorPos: *const f32,
                                         colorCount: ::std::os::raw::c_int,
-                                        localMatrix: *const Matrix)
-                                        -> *mut sk_shader_t;
+                                        localMatrix: *const sk_matrix_t)
+     -> *mut sk_shader_t;
 }
 extern "C" {
     /// Returns a shader that generates a conical gradient given two circles, or
@@ -1475,19 +1475,19 @@ extern "C" {
 /// not NULL) entries
 /// @param tileMode The tiling mode
 /// @param localMatrix May be NULL
-    pub fn sk_shader_new_two_point_conical_gradient(start: *const Point,
+    pub fn sk_shader_new_two_point_conical_gradient(start: *const sk_point_t,
                                                     startRadius: f32,
-                                                    end: *const Point,
+                                                    end: *const sk_point_t,
                                                     endRadius: f32,
                                                     colors: *const sk_color_t,
                                                     colorPos: *const f32,
                                                     colorCount:
                                                         ::std::os::raw::c_int,
                                                     tileMode:
-                                                    ShaderTilemode,
+                                                        sk_shader_tilemode_t,
                                                     localMatrix:
-                                                        *const Matrix)
-                                                    -> *mut sk_shader_t;
+                                                        *const sk_matrix_t)
+     -> *mut sk_shader_t;
 }
 extern "C" {
     /// Return a new surface, with the memory for the pixels automatically
@@ -1499,9 +1499,9 @@ extern "C" {
 ///
 /// @param sk_surfaceprops_t* If not NULL, specify additional non-default
 /// properties of the surface.
-    pub fn sk_surface_new_raster(arg1: *const ImageInfo,
-                                 arg2: *const SurfaceProps)
-                                 -> *mut sk_surface_t;
+    pub fn sk_surface_new_raster(arg1: *const sk_imageinfo_t,
+                                 arg2: *const sk_surfaceprops_t)
+     -> *mut sk_surface_t;
 }
 extern "C" {
     /// Create a new surface which will draw into the specified pixels
@@ -1519,11 +1519,11 @@ extern "C" {
 /// (width * sizeof(one pixel)).
 /// @param sk_surfaceprops_t* If not NULL, specify additional non-default
 /// properties of the surface.
-    pub fn sk_surface_new_raster_direct(arg1: *const ImageInfo,
+    pub fn sk_surface_new_raster_direct(arg1: *const sk_imageinfo_t,
                                         pixels: *mut ::std::os::raw::c_void,
                                         rowBytes: usize,
-                                        props: *const SurfaceProps)
-                                        -> *mut sk_surface_t;
+                                        props: *const sk_surfaceprops_t)
+     -> *mut sk_surface_t;
 }
 extern "C" {
     /// Decrement the reference count. If the reference count is 1 before
