@@ -22,3 +22,8 @@ build = "build.rs"
 links = "skia"
 
 [dependencies]
+
+
+[[example]]
+name = "sample"
+path = "examples/sample.rs"
