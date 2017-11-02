@@ -17,7 +17,10 @@
 
 use ::bindings as ffi;
 use ::color::Color;
-use ::{XfermodeMode, StrokeCap, StrokeJoin};
+use ::XfermodeMode;
+
+pub use self::ffi::sk_stroke_cap_t as StrokeCap;
+pub use self::ffi::sk_stroke_join_t as StrokeJoin;
 
 pub struct Paint {
     native_pointer: *mut ffi::sk_paint_t

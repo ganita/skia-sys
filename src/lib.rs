@@ -34,8 +34,6 @@ pub use bindings::sk_point_t as Point;
 pub use bindings::sk_rect_t as Rect;
 pub use bindings::sk_matrix_t as Matrix;
 pub use bindings::sk_blurstyle_t as BlurStyle;
-pub use bindings::sk_stroke_cap_t as StrokeCap;
-pub use bindings::sk_stroke_join_t as StrokeJoin;
 pub use bindings::sk_path_direction_t as PathDirection;
 pub use bindings::sk_shader_tilemode_t as ShaderTileMode;
 
