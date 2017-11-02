@@ -30,7 +30,7 @@ pub struct Color {
 }
 
 impl Color {
-    pub fn from_native(color: ffi::sk_color_t) -> Color {
+    pub(crate) fn from_native(color: ffi::sk_color_t) -> Color {
         Color {
             r: sk_color_get_r(color),
             g: sk_color_get_g(color),
@@ -39,7 +39,7 @@ impl Color {
         }
     }
 
-    pub fn get_native(&self) -> ffi::sk_color_t {
+    pub(crate) fn get_native(&self) -> ffi::sk_color_t {
         sk_color_set_argb(self.a, self.r, self.g, self.b)
     }
 }
