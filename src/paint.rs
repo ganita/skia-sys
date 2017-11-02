@@ -17,17 +17,14 @@
 
 use ::bindings as ffi;
 use ::color::Color;
-use ::XfermodeMode;
+use ::{XfermodeMode, MaskFilter, Shader};
 
 pub use self::ffi::sk_stroke_cap_t as StrokeCap;
 pub use self::ffi::sk_stroke_join_t as StrokeJoin;
 
 pub struct Paint {
-    native_pointer: *mut ffi::sk_paint_t
+    pub(crate) native_pointer: *mut ffi::sk_paint_t
 }
-
-pub type Shader = ffi::sk_shader_t;
-pub type MaskFilter = ffi::sk_maskfilter_t;
 
 impl Paint {
     pub fn new() -> Paint {
@@ -98,12 +95,12 @@ impl Paint {
         unsafe { ffi::sk_paint_set_stroke_join(self.native_pointer, join) }
     }
 
-    pub fn set_shader(&mut self, shader: &mut Shader) {
-        unsafe { ffi::sk_paint_set_shader(self.native_pointer, shader) };
+    pub fn set_shader(&mut self, shader: &Shader) {
+        unsafe { ffi::sk_paint_set_shader(self.native_pointer, shader.native_pointer) };
     }
 
-    pub fn set_maskfilter(&mut self, filter: &mut MaskFilter) {
-        unsafe { ffi::sk_paint_set_maskfilter(self.native_pointer, filter) };
+    pub fn set_maskfilter(&mut self, filter: &MaskFilter) {
+        unsafe { ffi::sk_paint_set_maskfilter(self.native_pointer, filter.native_pointer) };
     }
 
     pub fn set_xfermode_mode(&mut self, mode: XfermodeMode) {

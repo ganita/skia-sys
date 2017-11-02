@@ -23,6 +23,15 @@ pub mod bindings;
 
 mod paint;              pub use self::paint::Paint;
 mod color;              pub use self::color::Color;
+mod canvas;             pub use self::canvas::Canvas;
+mod path;               pub use self::path::Path;
+mod image;              pub use self::image::Image;
+mod picture;            pub use self::picture::Picture;
+mod data;               pub use self::data::Data;
+mod maskfilter;         pub use self::maskfilter::MaskFilter;
+mod matrix;             pub use self::matrix::*;
+mod shader;             pub use self::shader::*;
+mod surface;            pub use self::surface::*;
 
 pub use bindings::sk_xfermode_mode_t as XfermodeMode;
 pub use bindings::sk_colortype_t as ColorType;
@@ -33,7 +42,6 @@ pub use bindings::sk_imageinfo_t as ImageInfo;
 pub use bindings::sk_point_t as Point;
 pub use bindings::sk_rect_t as Rect;
 pub use bindings::sk_matrix_t as Matrix;
-pub use bindings::sk_blurstyle_t as BlurStyle;
 pub use bindings::sk_path_direction_t as PathDirection;
 pub use bindings::sk_shader_tilemode_t as ShaderTileMode;
 
