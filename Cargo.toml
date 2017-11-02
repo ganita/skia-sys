@@ -2,5 +2,6 @@
 name = "skia-sys"
 version = "0.1.0"
 authors = ["Sreejith Krishnan R <sreejith@ganita.io>"]
+build = "build.rs"
 
 [dependencies]
