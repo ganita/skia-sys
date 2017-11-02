@@ -22,15 +22,16 @@ use std::fs::File;
 use std::slice;
 use std::io::Write;
 
+use skia_sys::bindings::*;
 use skia_sys::*;
 
 fn main() {
     unsafe {
-        let image_info = sk_imageinfo_t {
+        let image_info = ImageInfo {
             width: 640,
             height: 480,
             colorType: sk_colortype_get_default_8888(),
-            alphaType: sk_alphatype_t::PREMUL_SK_ALPHATYPE,
+            alphaType: AlphaType::PREMUL_SK_ALPHATYPE,
         };
         let surface = sk_surface_new_raster(&image_info, ptr::null());
         let canvas = sk_surface_get_canvas(surface);
@@ -40,7 +41,7 @@ fn main() {
         sk_canvas_draw_paint(canvas, fill);
 
         sk_paint_set_color(fill, sk_color_set_argb(255, 0, 255, 255));
-        let rect = sk_rect_t {
+        let rect = Rect {
             left: 100.0,
             top: 100.0,
             right: 540.0,
@@ -62,7 +63,7 @@ fn main() {
         sk_canvas_draw_path(canvas, path, stroke);
 
         sk_paint_set_color(fill, sk_color_set_argb(128, 0, 255, 0));
-        let rect = sk_rect_t {
+        let rect = Rect {
             left: 120.0,
             top: 120.0,
             right: 520.0,

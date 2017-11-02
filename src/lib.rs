@@ -19,26 +19,42 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-mod bindings;
+pub mod bindings;
 
-pub use bindings::*;
+mod paint;              pub use self::paint::Paint;
+mod color;              pub use self::color::Color;
 
-pub fn sk_color_set_argb(a: u8, r: u8, g: u8, b: u8) -> sk_color_t {
+pub use bindings::sk_xfermode_mode_t as XfermodeMode;
+pub use bindings::sk_colortype_t as ColorType;
+pub use bindings::sk_alphatype_t as AlphaType;
+pub use bindings::sk_cliptype_t as ClipType;
+pub use bindings::sk_pixelgeometry_t as PixelGeometry;
+pub use bindings::sk_imageinfo_t as ImageInfo;
+pub use bindings::sk_point_t as Point;
+pub use bindings::sk_rect_t as Rect;
+pub use bindings::sk_matrix_t as Matrix;
+pub use bindings::sk_blurstyle_t as BlurStyle;
+pub use bindings::sk_stroke_cap_t as StrokeCap;
+pub use bindings::sk_stroke_join_t as StrokeJoin;
+pub use bindings::sk_path_direction_t as PathDirection;
+pub use bindings::sk_shader_tilemode_t as ShaderTileMode;
+
+pub fn sk_color_set_argb(a: u8, r: u8, g: u8, b: u8) -> bindings::sk_color_t {
     (a as u32) << 24 | (r as u32) << 16 | (g as u32) << 8 | (b as u32)
 }
 
-pub fn sk_color_get_a(color: sk_color_t) -> u8 {
+pub fn sk_color_get_a(color: bindings::sk_color_t) -> u8 {
     (color >> 24 & 0xFF) as u8
 }
 
-pub fn sk_color_get_r(color: sk_color_t) -> u8 {
+pub fn sk_color_get_r(color: bindings::sk_color_t) -> u8 {
     (color >> 16 & 0xFF) as u8
 }
 
-pub fn sk_color_get_g(color: sk_color_t) -> u8 {
+pub fn sk_color_get_g(color: bindings::sk_color_t) -> u8 {
     (color >> 8 & 0xFF) as u8
 }
 
-pub fn sk_color_get_b(color: sk_color_t) -> u8 {
+pub fn sk_color_get_b(color: bindings::sk_color_t) -> u8 {
     (color >> 0 & 0xFF) as u8
 }
