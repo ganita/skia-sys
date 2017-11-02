@@ -31,8 +31,14 @@ pub type MaskFilter = ffi::sk_maskfilter_t;
 
 impl Paint {
     pub fn new() -> Paint {
+        let pointer = unsafe { ffi::sk_paint_new() };
+
+        if pointer.is_null() {
+            panic!("Cannot create paint object");
+        }
+
         Paint {
-            native_pointer: unsafe { ffi::sk_paint_new() },
+            native_pointer: pointer,
         }
     }
 
