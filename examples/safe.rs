@@ -66,6 +66,8 @@ fn main() {
 
     let metrics = text_paint.get_font_metrics(0.);
     println!("{:?}", metrics);
+    println!("{}", text_paint.measure_text("Hello world!"));
+    println!("{:?}", text_paint.measure_text_bounds("Hello world!"));
 
     let root_dir = env!("CARGO_MANIFEST_DIR");
     let typeface = Typeface::new_from_file(&format!(

@@ -1724,6 +1724,21 @@ extern "C" {
                                      scale: f32) -> f32;
 }
 extern "C" {
+    /// Return the width of the text. This will return the vertical measure
+/// if isVerticalText() is true, in which case the returned value should
+/// be treated has a height instead of a width.
+///
+/// @param text         The text to be measured
+/// @param length       Number of bytes of text to measure
+/// @param bounds       If not NULL, returns the bounds of the text,
+/// relative to (0, 0).
+/// @return             The advance width of the text
+    pub fn sk_paint_measure_text(arg1: *mut sk_paint_t,
+                                 text: *const ::std::os::raw::c_void,
+                                 length: usize, bounds: *mut sk_rect_t)
+     -> f32;
+}
+extern "C" {
     /// Return a new typeface given a file. If the file does not exist, or is
 /// not a valid font file, returns nullptr.
     pub fn sk_typeface_new_from_file(path: *const ::std::os::raw::c_char,

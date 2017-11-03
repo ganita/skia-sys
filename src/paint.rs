@@ -15,9 +15,13 @@
 */
 
 
+use std::ffi::CString;
+use std::ptr;
+use std::os::raw::c_void;
+
 use ::bindings as ffi;
 use ::color::Color;
-use ::{XfermodeMode, MaskFilter, Shader, Typeface};
+use ::{XfermodeMode, MaskFilter, Shader, Typeface, Rect};
 
 pub use self::ffi::sk_stroke_cap_t as StrokeCap;
 pub use self::ffi::sk_stroke_join_t as StrokeJoin;
@@ -137,6 +141,26 @@ impl Paint {
         unsafe { ffi::sk_paint_get_font_metrics(self.native_pointer, &mut font_metrics, scale) };
 
         font_metrics
+    }
+
+    pub fn measure_text(&self, text: &str) -> f32 {
+        let ctext = CString::new(text).unwrap();
+        unsafe { ffi::sk_paint_measure_text(self.native_pointer, ctext.as_ptr() as *const c_void,
+                                            text.len(), ptr::null_mut()) }
+    }
+
+    pub fn measure_text_bounds(&self, text: &str) -> Rect {
+        let ctext = CString::new(text).unwrap();
+        let mut rect = Rect {
+            left: 0.0,
+            top: 0.0,
+            right: 0.0,
+            bottom: 0.0,
+        };
+        unsafe { ffi::sk_paint_measure_text(self.native_pointer, ctext.as_ptr()
+            as *const c_void, text.len(), &mut rect) };
+
+        rect
     }
 
     pub fn set_shader(&mut self, shader: &Shader) {

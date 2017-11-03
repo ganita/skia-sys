@@ -68,6 +68,18 @@ SK_API void sk_paint_set_typeface(sk_paint_t*, sk_typeface_t* typeface);
 */
 SK_API float sk_paint_get_font_metrics(sk_paint_t*, sk_font_metrics_t* metrics, float scale);
 
+/** Return the width of the text. This will return the vertical measure
+     *  if isVerticalText() is true, in which case the returned value should
+     *  be treated has a height instead of a width.
+     *
+     *  @param text         The text to be measured
+     *  @param length       Number of bytes of text to measure
+     *  @param bounds       If not NULL, returns the bounds of the text,
+     *                      relative to (0, 0).
+     *  @return             The advance width of the text
+     */
+SK_API float sk_paint_measure_text(sk_paint_t*, const void* text, size_t length, sk_rect_t* bounds);
+
 SK_C_PLUS_PLUS_END_GUARD
 
 #endif

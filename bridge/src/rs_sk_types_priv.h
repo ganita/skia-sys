@@ -40,6 +40,14 @@ static SkPaint::FontMetrics* AsFontMetrics(sk_font_metrics_t* cmetrics) {
     return reinterpret_cast<SkPaint::FontMetrics*>(cmetrics);
 }
 
+static sk_rect_t* ToRect(SkRect* rect) {
+    return reinterpret_cast<sk_rect_t*>(rect);
+}
+
+static SkRect* AsRect(sk_rect_t* crect) {
+    return reinterpret_cast<SkRect*>(crect);
+}
+
 SK_C_PLUS_PLUS_END_GUARD
 
 #endif
