@@ -1,2 +1,2 @@
 # skia-sys
-Unsafe rust bindings for Skia C API
+Safe rust bindings for Skia C API
