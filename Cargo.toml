@@ -25,8 +25,8 @@ links = "skia"
 
 
 [[example]]
-name = "sample"
-path = "examples/sample.rs"
+name = "unsafe"
+path = "examples/unsafe.rs"
 
 [[example]]
 name = "safe"
