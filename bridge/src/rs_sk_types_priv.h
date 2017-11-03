@@ -48,6 +48,14 @@ static SkRect* AsRect(sk_rect_t* crect) {
     return reinterpret_cast<SkRect*>(crect);
 }
 
+static sk_text_encoding_t ToTextEncoding(SkPaint::TextEncoding encoding) {
+    return (sk_text_encoding_t)(encoding);
+}
+
+static SkPaint::TextEncoding AsTextEncoding(sk_text_encoding_t cencoding) {
+    return (SkPaint::TextEncoding)(cencoding);
+}
+
 SK_C_PLUS_PLUS_END_GUARD
 
 #endif

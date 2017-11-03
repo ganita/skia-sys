@@ -80,6 +80,16 @@ SK_API float sk_paint_get_font_metrics(sk_paint_t*, sk_font_metrics_t* metrics, 
      */
 SK_API float sk_paint_measure_text(sk_paint_t*, const void* text, size_t length, sk_rect_t* bounds);
 
+/** Set the encoding of text
+    @param encoding Text encoding
+*/
+SK_API void sk_paint_set_text_encoding(sk_paint_t*, sk_text_encoding_t encoding);
+
+/** Get the encoding of text
+    @return encoding Text encoding
+*/
+SK_API sk_text_encoding_t sk_paint_get_text_encoding(sk_paint_t*);
+
 SK_C_PLUS_PLUS_END_GUARD
 
 #endif

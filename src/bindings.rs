@@ -1675,6 +1675,16 @@ fn bindgen_test_layout_sk_font_metrics_t() {
 impl Clone for sk_font_metrics_t {
     fn clone(&self) -> Self { *self }
 }
+#[repr(u32)]
+/// Describes how to interpret the text parameters that are passed to paint
+/// methods like measureText() and getTextWidths().
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+pub enum sk_text_encoding_t {
+    kUTF8_TextEncoding = 0,
+    kUTF16_TextEncoding = 1,
+    kUTF32_TextEncoding = 2,
+    kGlyphID_TextEncoding = 3,
+}
 extern "C" {
     /// Helper for setFlags(), setting or clearing the kDither_Flag bit
 /// @param dither   true to enable dithering, false to disable it
@@ -1737,6 +1747,18 @@ extern "C" {
                                  text: *const ::std::os::raw::c_void,
                                  length: usize, bounds: *mut sk_rect_t)
      -> f32;
+}
+extern "C" {
+    /// Set the encoding of text
+/// @param encoding Text encoding
+    pub fn sk_paint_set_text_encoding(arg1: *mut sk_paint_t,
+                                      encoding: sk_text_encoding_t);
+}
+extern "C" {
+    /// Get the encoding of text
+/// @return encoding Text encoding
+    pub fn sk_paint_get_text_encoding(arg1: *mut sk_paint_t)
+     -> sk_text_encoding_t;
 }
 extern "C" {
     /// Return a new typeface given a file. If the file does not exist, or is

@@ -34,7 +34,7 @@ fn main() {
     let mut canvas = surface.get_canvas();
 
     let mut fill = Paint::new();
-    fill.set_color(&Color { r: 0, g: 0, b: 255, a: 255, });
+    fill.set_color(&Color { r: 255, g: 255, b: 255, a: 255, });
     canvas.draw_paint(&fill);
 
     fill.set_color(&Color { a: 255, r: 0, g: 255, b: 255 });
@@ -64,11 +64,6 @@ fn main() {
     text_paint.set_dither(true);
     text_paint.set_text_size(64.);
 
-    let metrics = text_paint.get_font_metrics(0.);
-    println!("{:?}", metrics);
-    println!("{}", text_paint.measure_text("Hello world!"));
-    println!("{:?}", text_paint.measure_text_bounds("Hello world!"));
-
     let root_dir = env!("CARGO_MANIFEST_DIR");
     let typeface = Typeface::new_from_file(&format!(
         "{}/examples/fonts/STIX2Math.otf",
@@ -76,7 +71,21 @@ fn main() {
     ), 0).unwrap();
     text_paint.set_typeface(&typeface);
 
+    let metrics = text_paint.get_font_metrics(0.);
+    println!("{:?}", metrics);
+    println!("{}", text_paint.measure_text("Hello world!"));
+    println!("{:?}", text_paint.get_text_encoding());
+
+    text_paint.set_text_encoding(TextEncoding::kGlyphID_TextEncoding);
+    println!("{}", text_paint.measure_blob(&[19, 19]));
+
+    text_paint.set_text_encoding(TextEncoding::kUTF8_TextEncoding);
+    println!("{}", text_paint.measure_text("QQ"));
+
     canvas.draw_text("Hello", 100., 100., &text_paint);
+
+    text_paint.set_text_encoding(TextEncoding::kGlyphID_TextEncoding);
+    canvas.draw_blob(&[4000, 2000], 400., 100., &text_paint);
 
     fill.set_color(&Color {a: 128, r: 0, g: 255, b: 0});
     canvas.draw_oval(&Rect {

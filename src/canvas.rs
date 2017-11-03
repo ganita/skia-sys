@@ -99,6 +99,11 @@ impl<'a> Canvas<'a> {
                                      text.len(), x, y, paint.native_pointer) };
     }
 
+    pub fn draw_blob(&mut self, blob: &[u16], x: f32, y: f32, paint: &Paint) {
+        unsafe { sk_canvas_draw_text(self.native_pointer, blob.as_ptr() as *const c_void,
+                                     2*blob.len(), x, y, paint.native_pointer) }
+    }
+
     pub fn draw_image(&mut self, image: &Image, x: f32, y: f32, paint: &Paint) {
         unsafe { sk_canvas_draw_image(self.native_pointer, image.native_pointer, x, y,
                                       paint.native_pointer) };

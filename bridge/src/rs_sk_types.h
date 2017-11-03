@@ -52,6 +52,16 @@ typedef struct {
     float           fUnderlinePosition; //!< underline position, or 0 if cannot be determined
 } sk_font_metrics_t;
 
+/** Describes how to interpret the text parameters that are passed to paint
+    methods like measureText() and getTextWidths().
+*/
+typedef enum {
+    kUTF8_TextEncoding,     //!< the text parameters are UTF8
+    kUTF16_TextEncoding,    //!< the text parameters are UTF16
+    kUTF32_TextEncoding,    //!< the text parameters are UTF32
+    kGlyphID_TextEncoding   //!< the text parameters are glyph indices
+} sk_text_encoding_t;
+
 SK_C_PLUS_PLUS_END_GUARD
 
 #endif
