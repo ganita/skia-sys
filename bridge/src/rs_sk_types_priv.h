@@ -20,6 +20,7 @@
 
 #include "rs_sk_types.h"
 #include "SkTypeface.h"
+#include "SkPaint.h"
 
 SK_C_PLUS_PLUS_BEGIN_GUARD
 
@@ -29,6 +30,14 @@ static sk_typeface_t* ToTypeface(SkTypeface* typeface) {
 
 static SkTypeface* AsTypeface(sk_typeface_t* ctypeface) {
     return reinterpret_cast<SkTypeface*>(ctypeface);
+}
+
+static sk_font_metrics_t* ToFontMetrics(SkPaint::FontMetrics* rect) {
+    return reinterpret_cast<sk_font_metrics_t*>(rect);
+}
+
+static SkPaint::FontMetrics* AsFontMetrics(sk_font_metrics_t* cmetrics) {
+    return reinterpret_cast<SkPaint::FontMetrics*>(cmetrics);
 }
 
 SK_C_PLUS_PLUS_END_GUARD

@@ -27,6 +27,31 @@ SK_C_PLUS_PLUS_BEGIN_GUARD
  */
 typedef struct sk_typeface_t sk_typeface_t;
 
+// Font metrics
+typedef struct {
+    unsigned int    fFlags;       //!< Bit field to identify which values are unknown
+    float           fTop;       //!< The greatest distance above the baseline for any glyph (will be <= 0)
+    float           fAscent;    //!< The recommended distance above the baseline (will be <= 0)
+    float           fDescent;   //!< The recommended distance below the baseline (will be >= 0)
+    float           fBottom;    //!< The greatest distance below the baseline for any glyph (will be >= 0)
+    float           fLeading;   //!< The recommended distance to add between lines of text (will be >= 0)
+    float           fAvgCharWidth;  //!< the average character width (>= 0)
+    float           fMaxCharWidth;  //!< the max character width (>= 0)
+    float           fXMin;      //!< The minimum bounding box x value for all glyphs
+    float           fXMax;      //!< The maximum bounding box x value for all glyphs
+    float           fXHeight;   //!< The height of an 'x' in px, or 0 if no 'x' in face
+    float           fCapHeight;  //!< The cap height (> 0), or 0 if cannot be determined.
+    float           fUnderlineThickness; //!< underline thickness, or 0 if cannot be determined
+
+    /**  Underline Position - position of the top of the Underline stroke
+            relative to the baseline, this can have following values
+            - Negative - means underline should be drawn above baseline.
+            - Positive - means below baseline.
+            - Zero     - mean underline should be drawn on baseline.
+     */
+    float           fUnderlinePosition; //!< underline position, or 0 if cannot be determined
+} sk_font_metrics_t;
+
 SK_C_PLUS_PLUS_END_GUARD
 
 #endif

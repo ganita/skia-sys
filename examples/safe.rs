@@ -64,6 +64,9 @@ fn main() {
     text_paint.set_dither(true);
     text_paint.set_text_size(64.);
 
+    let metrics = text_paint.get_font_metrics(0.);
+    println!("{:?}", metrics);
+
     let root_dir = env!("CARGO_MANIFEST_DIR");
     let typeface = Typeface::new_from_file(&format!(
         "{}/examples/fonts/STIX2Math.otf",

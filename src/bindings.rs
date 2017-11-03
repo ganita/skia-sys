@@ -1561,6 +1561,120 @@ extern "C" {
 pub struct sk_typeface_t {
     _unused: [u8; 0],
 }
+#[repr(C)]
+#[derive(Debug, Copy)]
+pub struct sk_font_metrics_t {
+    /// !< Bit field to identify which values are unknown
+    pub fFlags: ::std::os::raw::c_uint,
+    /// !< The greatest distance above the baseline for any glyph (will be <= 0)
+    pub fTop: f32,
+    /// !< The recommended distance above the baseline (will be <= 0)
+    pub fAscent: f32,
+    /// !< The recommended distance below the baseline (will be >= 0)
+    pub fDescent: f32,
+    /// !< The greatest distance below the baseline for any glyph (will be >= 0)
+    pub fBottom: f32,
+    /// !< The recommended distance to add between lines of text (will be >= 0)
+    pub fLeading: f32,
+    /// !< the average character width (>= 0)
+    pub fAvgCharWidth: f32,
+    /// !< the max character width (>= 0)
+    pub fMaxCharWidth: f32,
+    /// !< The minimum bounding box x value for all glyphs
+    pub fXMin: f32,
+    /// !< The maximum bounding box x value for all glyphs
+    pub fXMax: f32,
+    /// !< The height of an 'x' in px, or 0 if no 'x' in face
+    pub fXHeight: f32,
+    /// !< The cap height (> 0), or 0 if cannot be determined.
+    pub fCapHeight: f32,
+    /// !< underline thickness, or 0 if cannot be determined
+    pub fUnderlineThickness: f32,
+    /// !< underline position, or 0 if cannot be determined
+    pub fUnderlinePosition: f32,
+}
+#[test]
+fn bindgen_test_layout_sk_font_metrics_t() {
+    assert_eq!(::std::mem::size_of::<sk_font_metrics_t>() , 56usize , concat !
+               ( "Size of: " , stringify ! ( sk_font_metrics_t ) ));
+    assert_eq! (::std::mem::align_of::<sk_font_metrics_t>() , 4usize , concat
+                ! ( "Alignment of " , stringify ! ( sk_font_metrics_t ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fFlags as * const
+                _ as usize } , 0usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fFlags ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fTop as * const _
+                as usize } , 4usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fTop ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fAscent as *
+                const _ as usize } , 8usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fAscent ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fDescent as *
+                const _ as usize } , 12usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fDescent ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fBottom as *
+                const _ as usize } , 16usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fBottom ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fLeading as *
+                const _ as usize } , 20usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fLeading ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fAvgCharWidth as
+                * const _ as usize } , 24usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fAvgCharWidth ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fMaxCharWidth as
+                * const _ as usize } , 28usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fMaxCharWidth ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fXMin as * const
+                _ as usize } , 32usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fXMin ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fXMax as * const
+                _ as usize } , 36usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fXMax ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fXHeight as *
+                const _ as usize } , 40usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fXHeight ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) . fCapHeight as *
+                const _ as usize } , 44usize , concat ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fCapHeight ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) .
+                fUnderlineThickness as * const _ as usize } , 48usize , concat
+                ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fUnderlineThickness ) ));
+    assert_eq! (unsafe {
+                & ( * ( 0 as * const sk_font_metrics_t ) ) .
+                fUnderlinePosition as * const _ as usize } , 52usize , concat
+                ! (
+                "Alignment of field: " , stringify ! ( sk_font_metrics_t ) ,
+                "::" , stringify ! ( fUnderlinePosition ) ));
+}
+impl Clone for sk_font_metrics_t {
+    fn clone(&self) -> Self { *self }
+}
 extern "C" {
     /// Helper for setFlags(), setting or clearing the kDither_Flag bit
 /// @param dither   true to enable dithering, false to disable it
@@ -1593,6 +1707,21 @@ extern "C" {
 /// @return         void
     pub fn sk_paint_set_typeface(arg1: *mut sk_paint_t,
                                  typeface: *mut sk_typeface_t);
+}
+extern "C" {
+    /// Return the recommend spacing between lines (which will be
+/// fDescent - fAscent + fLeading).
+/// If metrics is not null, return in it the font metrics for the
+/// typeface/pointsize/etc. currently set in the paint.
+/// @param metrics      If not null, returns the font metrics for the
+/// current typeface/pointsize/etc setting in this
+/// paint.
+/// @param scale        If not 0, return width as if the canvas were scaled
+/// by this value
+/// @param return the recommended spacing between lines
+    pub fn sk_paint_get_font_metrics(arg1: *mut sk_paint_t,
+                                     metrics: *mut sk_font_metrics_t,
+                                     scale: f32) -> f32;
 }
 extern "C" {
     /// Return a new typeface given a file. If the file does not exist, or is

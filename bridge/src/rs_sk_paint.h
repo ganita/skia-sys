@@ -55,6 +55,19 @@ SK_API float sk_paint_get_text_size(sk_paint_t*);
 */
 SK_API void sk_paint_set_typeface(sk_paint_t*, sk_typeface_t* typeface);
 
+/** Return the recommend spacing between lines (which will be
+    fDescent - fAscent + fLeading).
+    If metrics is not null, return in it the font metrics for the
+    typeface/pointsize/etc. currently set in the paint.
+    @param metrics      If not null, returns the font metrics for the
+                        current typeface/pointsize/etc setting in this
+                        paint.
+    @param scale        If not 0, return width as if the canvas were scaled
+                        by this value
+    @param return the recommended spacing between lines
+*/
+SK_API float sk_paint_get_font_metrics(sk_paint_t*, sk_font_metrics_t* metrics, float scale);
+
 SK_C_PLUS_PLUS_END_GUARD
 
 #endif

@@ -39,3 +39,7 @@ float sk_paint_get_text_size(sk_paint_t* cpaint) {
 void sk_paint_set_typeface(sk_paint_t* cpaint, sk_typeface_t* ctypeface) {
     AsPaint(cpaint)->setTypeface(sk_ref_sp(AsTypeface(ctypeface)));
 }
+
+float sk_paint_get_font_metrics(sk_paint_t* cpaint, sk_font_metrics_t* cmetrics, float scale) {
+    return AsPaint(cpaint)->getFontMetrics(AsFontMetrics(cmetrics), scale);
+}

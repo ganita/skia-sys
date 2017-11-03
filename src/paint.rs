@@ -21,6 +21,7 @@ use ::{XfermodeMode, MaskFilter, Shader, Typeface};
 
 pub use self::ffi::sk_stroke_cap_t as StrokeCap;
 pub use self::ffi::sk_stroke_join_t as StrokeJoin;
+pub use self::ffi::sk_font_metrics_t as FontMetrics;
 
 pub struct Paint {
     pub(crate) native_pointer: *mut ffi::sk_paint_t
@@ -113,6 +114,29 @@ impl Paint {
 
     pub fn set_typeface(&mut self, typeface: &Typeface) {
         unsafe { ffi::sk_paint_set_typeface(self.native_pointer, typeface.native_pointer) };
+    }
+
+    pub fn get_font_metrics(&self, scale: f32) -> FontMetrics {
+        let mut font_metrics = FontMetrics {
+            fFlags: 0,
+            fTop: 0.0,
+            fAscent: 0.0,
+            fDescent: 0.0,
+            fBottom: 0.0,
+            fLeading: 0.0,
+            fAvgCharWidth: 0.0,
+            fMaxCharWidth: 0.0,
+            fXMin: 0.0,
+            fXMax: 0.0,
+            fXHeight: 0.0,
+            fCapHeight: 0.0,
+            fUnderlineThickness: 0.0,
+            fUnderlinePosition: 0.0,
+        };
+
+        unsafe { ffi::sk_paint_get_font_metrics(self.native_pointer, &mut font_metrics, scale) };
+
+        font_metrics
     }
 
     pub fn set_shader(&mut self, shader: &Shader) {
