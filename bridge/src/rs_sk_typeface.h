@@ -15,17 +15,22 @@
 */
 
 
-#include "skia/include/c/sk_canvas.h"
-#include "skia/include/c/sk_data.h"
-#include "skia/include/c/sk_image.h"
-#include "skia/include/c/sk_maskfilter.h"
-#include "skia/include/c/sk_matrix.h"
-#include "skia/include/c/sk_paint.h"
-#include "skia/include/c/sk_path.h"
-#include "skia/include/c/sk_picture.h"
-#include "skia/include/c/sk_shader.h"
-#include "skia/include/c/sk_surface.h"
-#include "skia/include/c/sk_types.h"
-#include "bridge/src/rs_sk_canvas.h"
-#include "bridge/src/rs_sk_paint.h"
-#include "bridge/src/rs_sk_typeface.h"
+#ifndef rs_sk_typeface_DEFINED
+#define rs_sk_typeface_DEFINED
+
+#include "rs_sk_types.h"
+
+SK_C_PLUS_PLUS_BEGIN_GUARD
+
+/** Return a new typeface given a file. If the file does not exist, or is
+    not a valid font file, returns nullptr.
+*/
+SK_API sk_typeface_t* sk_typeface_new_from_file(const char* path, unsigned int index);
+
+/** Dereference
+*/
+SK_API void sk_typeface_unref(sk_typeface_t*);
+
+SK_C_PLUS_PLUS_END_GUARD
+
+#endif

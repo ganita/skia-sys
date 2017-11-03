@@ -18,6 +18,7 @@
 #include "SkPaint.h"
 #include "rs_sk_paint.h"
 #include "sk_types_priv.h"
+#include "rs_sk_types_priv.h"
 
 void sk_paint_set_dither(sk_paint_t* cpaint, bool dither) {
     AsPaint(cpaint)->setAntiAlias(dither);
@@ -33,4 +34,8 @@ void sk_paint_set_text_size(sk_paint_t* cpaint, float size) {
 
 float sk_paint_get_text_size(sk_paint_t* cpaint) {
     return AsPaint(cpaint)->getTextSize();
+}
+
+void sk_paint_set_typeface(sk_paint_t* cpaint, sk_typeface_t* ctypeface) {
+    AsPaint(cpaint)->setTypeface(sk_ref_sp(AsTypeface(ctypeface)));
 }

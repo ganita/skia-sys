@@ -1556,6 +1556,11 @@ extern "C" {
                                length: usize, x: f32, y: f32,
                                cpaint: *const sk_paint_t);
 }
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct sk_typeface_t {
+    _unused: [u8; 0],
+}
 extern "C" {
     /// Helper for setFlags(), setting or clearing the kDither_Flag bit
 /// @param dither   true to enable dithering, false to disable it
@@ -1575,6 +1580,30 @@ extern "C" {
     /// Return the paint's text size.
 /// @return the paint's text size.
     pub fn sk_paint_get_text_size(arg1: *mut sk_paint_t) -> f32;
+}
+extern "C" {
+    /// Set or clear the typeface object.
+/// <p />
+/// Pass NULL to clear any previous typeface.
+/// As a convenience, the parameter passed is also returned.
+/// If a previous typeface exists, its reference count is decremented.
+/// If typeface is not NULL, its reference count is incremented.
+/// @param typeface May be NULL. The new typeface to be installed in the
+/// paint
+/// @return         void
+    pub fn sk_paint_set_typeface(arg1: *mut sk_paint_t,
+                                 typeface: *mut sk_typeface_t);
+}
+extern "C" {
+    /// Return a new typeface given a file. If the file does not exist, or is
+/// not a valid font file, returns nullptr.
+    pub fn sk_typeface_new_from_file(path: *const ::std::os::raw::c_char,
+                                     index: ::std::os::raw::c_uint)
+     -> *mut sk_typeface_t;
+}
+extern "C" {
+    /// Dereference
+    pub fn sk_typeface_unref(arg1: *mut sk_typeface_t);
 }
 pub type __builtin_va_list = [__va_list_tag; 1usize];
 #[repr(C)]

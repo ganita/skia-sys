@@ -32,6 +32,7 @@ mod maskfilter;         pub use self::maskfilter::*;
 mod matrix;             pub use self::matrix::*;
 mod shader;             pub use self::shader::*;
 mod surface;            pub use self::surface::*;
+mod typeface;           pub use self::typeface::*;
 
 pub use bindings::sk_xfermode_mode_t as XfermodeMode;
 pub use bindings::sk_colortype_t as ColorType;

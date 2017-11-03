@@ -15,17 +15,29 @@
 */
 
 
-#include "skia/include/c/sk_canvas.h"
-#include "skia/include/c/sk_data.h"
-#include "skia/include/c/sk_image.h"
-#include "skia/include/c/sk_maskfilter.h"
-#include "skia/include/c/sk_matrix.h"
-#include "skia/include/c/sk_paint.h"
-#include "skia/include/c/sk_path.h"
-#include "skia/include/c/sk_picture.h"
-#include "skia/include/c/sk_shader.h"
-#include "skia/include/c/sk_surface.h"
-#include "skia/include/c/sk_types.h"
-#include "bridge/src/rs_sk_canvas.h"
-#include "bridge/src/rs_sk_paint.h"
-#include "bridge/src/rs_sk_typeface.h"
+use std::ffi::CString;
+
+use ::bindings::*;
+
+pub struct Typeface {
+    pub(crate) native_pointer: *mut sk_typeface_t,
+}
+
+impl Typeface {
+    pub fn new_from_file(path: &str, index: u32) -> Option<Typeface> {
+        let c_str = CString::new(path).unwrap();
+        let native_pointer = unsafe { sk_typeface_new_from_file(c_str.as_ptr(), index) };
+
+        if native_pointer.is_null() {
+            return None;
+        }
+
+        Some(Typeface { native_pointer })
+    }
+}
+
+impl Drop for Typeface {
+    fn drop(&mut self) {
+        unsafe { sk_typeface_unref(self.native_pointer) };
+    }
+}

@@ -17,7 +17,7 @@
 
 use ::bindings as ffi;
 use ::color::Color;
-use ::{XfermodeMode, MaskFilter, Shader};
+use ::{XfermodeMode, MaskFilter, Shader, Typeface};
 
 pub use self::ffi::sk_stroke_cap_t as StrokeCap;
 pub use self::ffi::sk_stroke_join_t as StrokeJoin;
@@ -109,6 +109,10 @@ impl Paint {
 
     pub fn get_text_size(&self) -> f32 {
         unsafe { ffi::sk_paint_get_text_size(self.native_pointer) }
+    }
+
+    pub fn set_typeface(&mut self, typeface: &Typeface) {
+        unsafe { ffi::sk_paint_set_typeface(self.native_pointer, typeface.native_pointer) };
     }
 
     pub fn set_shader(&mut self, shader: &Shader) {

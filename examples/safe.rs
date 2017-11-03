@@ -63,6 +63,14 @@ fn main() {
     text_paint.set_color(&Color { a: 255, r: 0, g: 0, b: 0 });
     text_paint.set_dither(true);
     text_paint.set_text_size(64.);
+
+    let root_dir = env!("CARGO_MANIFEST_DIR");
+    let typeface = Typeface::new_from_file(&format!(
+        "{}/examples/fonts/STIX2Math.otf",
+        root_dir
+    ), 0).unwrap();
+    text_paint.set_typeface(&typeface);
+
     canvas.draw_text("Hello", 100., 100., &text_paint);
 
     fill.set_color(&Color {a: 128, r: 0, g: 255, b: 0});

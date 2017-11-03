@@ -15,17 +15,22 @@
 */
 
 
-#include "skia/include/c/sk_canvas.h"
-#include "skia/include/c/sk_data.h"
-#include "skia/include/c/sk_image.h"
-#include "skia/include/c/sk_maskfilter.h"
-#include "skia/include/c/sk_matrix.h"
-#include "skia/include/c/sk_paint.h"
-#include "skia/include/c/sk_path.h"
-#include "skia/include/c/sk_picture.h"
-#include "skia/include/c/sk_shader.h"
-#include "skia/include/c/sk_surface.h"
-#include "skia/include/c/sk_types.h"
-#include "bridge/src/rs_sk_canvas.h"
-#include "bridge/src/rs_sk_paint.h"
-#include "bridge/src/rs_sk_typeface.h"
+#ifndef rs_sk_types_priv_DEFINED
+#define rs_sk_types_priv_DEFINED
+
+#include "rs_sk_types.h"
+#include "SkTypeface.h"
+
+SK_C_PLUS_PLUS_BEGIN_GUARD
+
+static sk_typeface_t* ToTypeface(SkTypeface* typeface) {
+    return reinterpret_cast<sk_typeface_t*>(typeface);
+}
+
+static SkTypeface* AsTypeface(sk_typeface_t* ctypeface) {
+    return reinterpret_cast<SkTypeface*>(ctypeface);
+}
+
+SK_C_PLUS_PLUS_END_GUARD
+
+#endif

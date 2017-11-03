@@ -19,6 +19,7 @@
 #define rs_sk_paint_DEFINED
 
 #include "sk_types.h"
+#include "rs_sk_types.h"
 
 SK_C_PLUS_PLUS_BEGIN_GUARD
 
@@ -41,6 +42,18 @@ SK_API void sk_paint_set_text_size(sk_paint_t*, float);
     @return the paint's text size.
 */
 SK_API float sk_paint_get_text_size(sk_paint_t*);
+
+/** Set or clear the typeface object.
+    <p />
+    Pass NULL to clear any previous typeface.
+    As a convenience, the parameter passed is also returned.
+    If a previous typeface exists, its reference count is decremented.
+    If typeface is not NULL, its reference count is incremented.
+    @param typeface May be NULL. The new typeface to be installed in the
+                    paint
+    @return         void
+*/
+SK_API void sk_paint_set_typeface(sk_paint_t*, sk_typeface_t* typeface);
 
 SK_C_PLUS_PLUS_END_GUARD
 
