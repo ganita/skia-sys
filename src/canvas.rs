@@ -23,7 +23,7 @@ use ::{Rect, Paint, Matrix, Path, Image, Picture};
 pub struct Canvas<'a> {
     pub(crate) native_pointer: *mut sk_canvas_t,
 
-    phantom: PhantomData<&'a sk_canvas_t>
+    pub(crate) phantom: PhantomData<&'a sk_canvas_t>
 }
 
 impl<'a> Canvas<'a> {

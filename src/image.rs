@@ -27,7 +27,7 @@ pub struct Image {
 }
 
 impl Image {
-    fn new_from_pointer(native_pointer: *mut sk_image_t) -> Option<Image> {
+    pub(crate) fn new_from_pointer(native_pointer: *mut sk_image_t) -> Option<Image> {
         if native_pointer.is_null() {
             None
         } else {

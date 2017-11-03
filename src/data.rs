@@ -61,8 +61,8 @@ impl Data {
         unsafe { sk_data_get_size(self.native_pointer) }
     }
 
-    pub fn get_data(&self) -> &[c_void] {
-        let slice = unsafe { sk_data_get_data(self.native_pointer) };
+    pub fn get_data(&self) -> &[u8] {
+        let slice = unsafe { sk_data_get_data(self.native_pointer) } as *const u8;
         unsafe { slice::from_raw_parts(slice, self.size()) }
     }
 }
