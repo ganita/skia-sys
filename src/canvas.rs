@@ -16,6 +16,8 @@
 
 
 use std::marker::PhantomData;
+use std::ffi::CString;
+use std::os::raw::c_void;
 
 use ::bindings::*;
 use ::{Rect, Paint, Matrix, Path, Image, Picture};
@@ -89,6 +91,12 @@ impl<'a> Canvas<'a> {
 
     pub fn draw_path(&mut self, path: &Path, paint: &Paint) {
         unsafe { sk_canvas_draw_path(self.native_pointer, path.native_pointer, paint.native_pointer) };
+    }
+
+    pub fn draw_text(&mut self, text: &str, x: f32, y: f32, paint: &Paint) {
+        let cstr = CString::new(text).unwrap();
+        unsafe { sk_canvas_draw_text(self.native_pointer, cstr.as_ptr() as *const c_void,
+                                     text.len(), x, y, paint.native_pointer) };
     }
 
     pub fn draw_image(&mut self, image: &Image, x: f32, y: f32, paint: &Paint) {

@@ -15,15 +15,15 @@
 */
 
 
-#include "skia/include/c/sk_canvas.h"
-#include "skia/include/c/sk_data.h"
-#include "skia/include/c/sk_image.h"
-#include "skia/include/c/sk_maskfilter.h"
-#include "skia/include/c/sk_matrix.h"
-#include "skia/include/c/sk_paint.h"
-#include "skia/include/c/sk_path.h"
-#include "skia/include/c/sk_picture.h"
-#include "skia/include/c/sk_shader.h"
-#include "skia/include/c/sk_surface.h"
-#include "skia/include/c/sk_types.h"
-#include "bridge/src/rs_sk_canvas.h"
+#ifndef rs_sk_canvas_DEFINED
+#define rs_sk_canvas_DEFINED
+
+#include "sk_types.h"
+
+SK_C_PLUS_PLUS_BEGIN_GUARD
+
+SK_API void sk_canvas_draw_text(sk_canvas_t* ccanvas, const void* text, size_t length, float x, float y, const sk_paint_t* cpaint);
+
+SK_C_PLUS_PLUS_END_GUARD
+
+#endif

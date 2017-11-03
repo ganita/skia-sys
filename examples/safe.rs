@@ -58,6 +58,11 @@ fn main() {
     path.line_to(590., 430.);
     canvas.draw_path(&path, &stroke);
 
+    let mut text_paint = Paint::new();
+    text_paint.set_antialias(true);
+    text_paint.set_color(&Color { a: 255, r: 0, g: 0, b: 0 });
+    canvas.draw_text("Hello", 100., 100., &text_paint);
+
     fill.set_color(&Color {a: 128, r: 0, g: 255, b: 0});
     canvas.draw_oval(&Rect {
         left: 120.0,

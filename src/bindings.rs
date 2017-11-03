@@ -1542,6 +1542,12 @@ extern "C" {
     pub fn sk_surface_new_image_snapshot(arg1: *mut sk_surface_t)
      -> *mut sk_image_t;
 }
+extern "C" {
+    pub fn sk_canvas_draw_text(ccanvas: *mut sk_canvas_t,
+                               text: *const ::std::os::raw::c_void,
+                               length: usize, x: f32, y: f32,
+                               cpaint: *const sk_paint_t);
+}
 pub type __builtin_va_list = [__va_list_tag; 1usize];
 #[repr(C)]
 #[derive(Debug, Copy)]

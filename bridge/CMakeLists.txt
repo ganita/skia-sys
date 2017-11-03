@@ -14,21 +14,21 @@
  # limitations under the License.
 ##
 
-[package]
-name = "skia-sys"
-version = "0.1.0"
-authors = ["Sreejith Krishnan R <sreejith@ganita.io>"]
-build = "build.rs"
-links = "skia"
 
-[build-dependencies]
-cmake = "*"
+cmake_minimum_required (VERSION 3.1)
+project (skia_rust)
 
+set (CMAKE_CXX_STANDARD 11)
 
-[[example]]
-name = "unsafe"
-path = "examples/unsafe.rs"
+set( SKIA_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../skia/include )
+include_directories(${SKIA_INCLUDE_DIR}/core)
+include_directories(${SKIA_INCLUDE_DIR}/config)
+include_directories(${SKIA_INCLUDE_DIR}/c)
+include_directories(${SKIA_INCLUDE_DIR}/private)
 
-[[example]]
-name = "safe"
-path = "examples/safe.rs"
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../skia/src/c)
+
+file(GLOB SKIA_RUST_SRC src/*.cpp)
+add_library (skia_rust STATIC ${SKIA_RUST_SRC})
+
+install( TARGETS skia_rust DESTINATION ${PROJECT_BINARY_DIR}/libs )

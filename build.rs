@@ -15,6 +15,8 @@
 */
 
 
+extern crate cmake;
+
 use std::process::Command;
 use std::env;
 use std::path::Path;
@@ -46,4 +48,11 @@ fn main() {
     println!("cargo:rustc-link-lib=framework=CoreGraphics");
     println!("cargo:rustc-link-lib=framework=CoreText");
     println!("cargo:rustc-link-lib=framework=CoreServices");
+
+    let mut cmd = cmake::Config::new("bridge");
+    let dest = cmd.build();
+
+    println!("cargo:rustc-link-search=native={}/build/libs", dest.display());
+    println!("cargo:rustc-link-lib=static=skia_rust");
+
 }
