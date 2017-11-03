@@ -47,6 +47,14 @@ impl Paint {
         unsafe { ffi::sk_paint_set_antialias(self.native_pointer, antialias) }
     }
 
+    pub fn set_dither(&mut self, dither: bool) {
+        unsafe { ffi::sk_paint_set_dither(self.native_pointer, dither) };
+    }
+
+    pub fn is_dither(&self) -> bool {
+        unsafe { ffi::sk_paint_is_dither(self.native_pointer) }
+    }
+
     pub fn get_color(&self) -> Color {
         unsafe { Color::from_native(ffi::sk_paint_get_color(self.native_pointer)) }
     }
@@ -93,6 +101,14 @@ impl Paint {
 
     pub fn set_stroke_join(&mut self, join: StrokeJoin) {
         unsafe { ffi::sk_paint_set_stroke_join(self.native_pointer, join) }
+    }
+
+    pub fn set_text_size(&mut self, size: f32) {
+        unsafe { ffi::sk_paint_set_text_size(self.native_pointer, size) };
+    }
+
+    pub fn get_text_size(&self) -> f32 {
+        unsafe { ffi::sk_paint_get_text_size(self.native_pointer) }
     }
 
     pub fn set_shader(&mut self, shader: &Shader) {

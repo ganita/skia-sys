@@ -15,16 +15,22 @@
 */
 
 
-#include "skia/include/c/sk_canvas.h"
-#include "skia/include/c/sk_data.h"
-#include "skia/include/c/sk_image.h"
-#include "skia/include/c/sk_maskfilter.h"
-#include "skia/include/c/sk_matrix.h"
-#include "skia/include/c/sk_paint.h"
-#include "skia/include/c/sk_path.h"
-#include "skia/include/c/sk_picture.h"
-#include "skia/include/c/sk_shader.h"
-#include "skia/include/c/sk_surface.h"
-#include "skia/include/c/sk_types.h"
-#include "bridge/src/rs_sk_canvas.h"
-#include "bridge/src/rs_sk_paint.h"
+#include "SkPaint.h"
+#include "rs_sk_paint.h"
+#include "sk_types_priv.h"
+
+void sk_paint_set_dither(sk_paint_t* cpaint, bool dither) {
+    AsPaint(cpaint)->setAntiAlias(dither);
+}
+
+bool sk_paint_is_dither(sk_paint_t* cpaint) {
+    return AsPaint(cpaint)->isAntiAlias();
+}
+
+void sk_paint_set_text_size(sk_paint_t* cpaint, float size) {
+    AsPaint(cpaint)->setTextSize(size);
+}
+
+float sk_paint_get_text_size(sk_paint_t* cpaint) {
+    return AsPaint(cpaint)->getTextSize();
+}

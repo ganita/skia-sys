@@ -1543,10 +1543,38 @@ extern "C" {
      -> *mut sk_image_t;
 }
 extern "C" {
+    /// Draw the text, with origin at (x,y), using the specified paint.
+/// The origin is interpreted based on the Align setting in the paint.
+/// @param ccanvas
+/// @param text The text to be drawn
+/// @param byteLength   The number of bytes to read from the text parameter
+/// @param x        The x-coordinate of the origin of the text being drawn
+/// @param y        The y-coordinate of the origin of the text being drawn
+/// @param paint    The paint used for the text (e.g. color, size, style)
     pub fn sk_canvas_draw_text(ccanvas: *mut sk_canvas_t,
                                text: *const ::std::os::raw::c_void,
                                length: usize, x: f32, y: f32,
                                cpaint: *const sk_paint_t);
+}
+extern "C" {
+    /// Helper for setFlags(), setting or clearing the kDither_Flag bit
+/// @param dither   true to enable dithering, false to disable it
+    pub fn sk_paint_set_dither(arg1: *mut sk_paint_t, arg2: bool);
+}
+extern "C" {
+    /// Helper for getFlags(), returning true if kDither_Flag bit is set
+/// @return true if the dithering bit is set in the paint's flags.
+    pub fn sk_paint_is_dither(arg1: *mut sk_paint_t) -> bool;
+}
+extern "C" {
+    /// Set the paint's text size. This value must be > 0
+/// @param textSize set the paint's text size.
+    pub fn sk_paint_set_text_size(arg1: *mut sk_paint_t, arg2: f32);
+}
+extern "C" {
+    /// Return the paint's text size.
+/// @return the paint's text size.
+    pub fn sk_paint_get_text_size(arg1: *mut sk_paint_t) -> f32;
 }
 pub type __builtin_va_list = [__va_list_tag; 1usize];
 #[repr(C)]
