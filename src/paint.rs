@@ -21,7 +21,7 @@ use std::os::raw::c_void;
 
 use ::bindings as ffi;
 use ::color::Color;
-use ::{XfermodeMode, MaskFilter, Shader, Typeface};
+use ::{XfermodeMode, MaskFilter, Shader, Typeface, Rect};
 
 pub use self::ffi::sk_stroke_cap_t as StrokeCap;
 pub use self::ffi::sk_stroke_join_t as StrokeJoin;
@@ -144,15 +144,35 @@ impl Paint {
         font_metrics
     }
 
-    pub fn measure_text(&self, text: &str) -> f32 {
+    pub fn measure_text(&self, text: &str) -> (f32, Rect) {
         let ctext = CString::new(text).unwrap();
-        unsafe { ffi::sk_paint_measure_text(self.native_pointer, ctext.as_ptr() as *const c_void,
-                                            text.len(), ptr::null_mut()) }
+        let mut rect = Rect {
+            left: 0.0,
+            top: 0.0,
+            right: 0.0,
+            bottom: 0.0,
+        };
+
+        let width = unsafe { ffi::sk_paint_measure_text(self.native_pointer,
+                                                        ctext.as_ptr() as *const c_void,
+                                                        text.len(), &mut rect) };
+
+        (width, rect)
     }
 
-    pub fn measure_blob(&self, blob: &[u16]) -> f32 {
-        unsafe { ffi::sk_paint_measure_text(self.native_pointer, blob.as_ptr() as *const c_void,
-                                            2*blob.len(), ptr::null_mut()) }
+    pub fn measure_blob(&self, blob: &[u16]) -> (f32, Rect) {
+        let mut rect = Rect {
+            left: 0.0,
+            top: 0.0,
+            right: 0.0,
+            bottom: 0.0,
+        };
+
+        let width = unsafe { ffi::sk_paint_measure_text(self.native_pointer,
+                                                        blob.as_ptr() as *const c_void,
+                                                        2*blob.len(), &mut rect) };
+
+        (width, rect)
     }
 
     pub fn set_text_encoding(&mut self, encoding: TextEncoding) {

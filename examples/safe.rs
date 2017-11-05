@@ -73,14 +73,14 @@ fn main() {
 
     let metrics = text_paint.get_font_metrics(0.);
     println!("{:?}", metrics);
-    println!("{}", text_paint.measure_text("Hello world!"));
+    println!("{:?}", text_paint.measure_text("Hello world!"));
     println!("{:?}", text_paint.get_text_encoding());
 
     text_paint.set_text_encoding(TextEncoding::kGlyphID_TextEncoding);
-    println!("{}", text_paint.measure_blob(&[19, 19]));
+    println!("{:?}", text_paint.measure_blob(&[19, 19]));
 
     text_paint.set_text_encoding(TextEncoding::kUTF8_TextEncoding);
-    println!("{}", text_paint.measure_text("QQ"));
+    println!("{:?}", text_paint.measure_text("QQ"));
 
     canvas.draw_text("Hello", 100., 100., &text_paint);
 
