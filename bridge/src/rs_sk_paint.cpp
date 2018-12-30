@@ -12,46 +12,48 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 
-
-#include "SkPaint.h"
 #include "rs_sk_paint.h"
-#include "sk_types_priv.h"
+#include "SkPaint.h"
 #include "rs_sk_types_priv.h"
+#include "sk_types_priv.h"
 
-void sk_paint_set_dither(sk_paint_t* cpaint, bool dither) {
-    AsPaint(cpaint)->setAntiAlias(dither);
+void sk_paint_set_dither(sk_paint_t *cpaint, bool dither) {
+  AsPaint(cpaint)->setAntiAlias(dither);
 }
 
-bool sk_paint_is_dither(sk_paint_t* cpaint) {
-    return AsPaint(cpaint)->isAntiAlias();
+bool sk_paint_is_dither(sk_paint_t *cpaint) {
+  return AsPaint(cpaint)->isAntiAlias();
 }
 
-void sk_paint_set_text_size(sk_paint_t* cpaint, float size) {
-    AsPaint(cpaint)->setTextSize(size);
+void sk_paint_set_text_size(sk_paint_t *cpaint, float size) {
+  AsPaint(cpaint)->setTextSize(size);
 }
 
-float sk_paint_get_text_size(sk_paint_t* cpaint) {
-    return AsPaint(cpaint)->getTextSize();
+float sk_paint_get_text_size(sk_paint_t *cpaint) {
+  return AsPaint(cpaint)->getTextSize();
 }
 
-void sk_paint_set_typeface(sk_paint_t* cpaint, sk_typeface_t* ctypeface) {
-    AsPaint(cpaint)->setTypeface(sk_ref_sp(AsTypeface(ctypeface)));
+void sk_paint_set_typeface(sk_paint_t *cpaint, sk_typeface_t *ctypeface) {
+  AsPaint(cpaint)->setTypeface(sk_ref_sp(AsTypeface(ctypeface)));
 }
 
-float sk_paint_get_font_metrics(sk_paint_t* cpaint, sk_font_metrics_t* cmetrics, float scale) {
-    return AsPaint(cpaint)->getFontMetrics(AsFontMetrics(cmetrics), scale);
+float sk_paint_get_font_metrics(sk_paint_t *cpaint,
+                                sk_font_metrics_t *cmetrics) {
+  return AsPaint(cpaint)->getFontMetrics(AsFontMetrics(cmetrics));
 }
 
-float sk_paint_measure_text(sk_paint_t* cpaint, const void* text, size_t length, sk_rect_t* bounds) {
-    return AsPaint(cpaint)->measureText(text, length, AsRect(bounds));
+float sk_paint_measure_text(sk_paint_t *cpaint, const void *text, size_t length,
+                            sk_rect_t *bounds) {
+  return AsPaint(cpaint)->measureText(text, length, AsRect(bounds));
 }
 
-void sk_paint_set_text_encoding(sk_paint_t* cpaint, sk_text_encoding_t encoding) {
-    AsPaint(cpaint)->setTextEncoding(AsTextEncoding(encoding));
+void sk_paint_set_text_encoding(sk_paint_t *cpaint,
+                                sk_text_encoding_t encoding) {
+  AsPaint(cpaint)->setTextEncoding(AsTextEncoding(encoding));
 }
 
-sk_text_encoding_t sk_paint_get_text_encoding(sk_paint_t* cpaint) {
-    return ToTextEncoding(AsPaint(cpaint)->getTextEncoding());
+sk_text_encoding_t sk_paint_get_text_encoding(sk_paint_t *cpaint) {
+  return ToTextEncoding(AsPaint(cpaint)->getTextEncoding());
 }

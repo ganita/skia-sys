@@ -32,7 +32,7 @@ fn main() {
 
     assert!(Command::new("bin/gn")
                 .current_dir("skia")
-                .args(&["gen", &skia_out_dir, "--args=is_official_build=true"])
+                .args(&["gen", &skia_out_dir, "--args=is_official_build=true skia_use_system_expat=false skia_use_system_icu=false skia_use_system_libjpeg_turbo=false skia_use_system_libpng=false skia_use_system_libwebp=false skia_use_system_zlib=false"])
                 .status().unwrap().success(), "Cannot generate build files");
 
     assert!(Command::new("ninja")
